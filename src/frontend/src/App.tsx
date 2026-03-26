@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { useEffect, useState } from "react";
 import type { Product } from "./backend.d";
+import { AdminDashboard } from "./components/AdminDashboard";
 import { CartDrawer } from "./components/CartDrawer";
 import { CheckoutModal } from "./components/CheckoutModal";
 import { Footer } from "./components/Footer";
@@ -13,6 +14,11 @@ import { SAMPLE_PRODUCTS } from "./data/sampleProducts";
 import { useActor } from "./hooks/useActor";
 import { useGetAllProducts } from "./hooks/useQueries";
 import type { CartItem } from "./types/cart";
+
+// ─── Admin route shortcut ─────────────────────────────────────────────────────
+if (window.location.pathname === "/admin") {
+  // Render admin dashboard exclusively
+}
 
 function useUtmTracking() {
   useEffect(() => {
@@ -41,7 +47,7 @@ function useSeedProducts() {
   }, [actor, isFetching]);
 }
 
-export default function App() {
+function StoreApp() {
   useUtmTracking();
   useSeedProducts();
 
@@ -137,10 +143,21 @@ export default function App() {
         onOrderSuccess={handleOrderSuccess}
       />
 
-      {/* PWA install prompt — appears after 3s if not already installed */}
       <InstallPrompt />
 
       <Toaster position="top-right" richColors />
     </div>
   );
+}
+
+export default function App() {
+  if (window.location.pathname === "/admin") {
+    return (
+      <>
+        <AdminDashboard />
+        <Toaster position="top-right" richColors />
+      </>
+    );
+  }
+  return <StoreApp />;
 }

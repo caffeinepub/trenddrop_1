@@ -1,33 +1,34 @@
-# TrendDrop
+# TrendDrop Admin Dashboard
 
 ## Current State
-The Navbar component (src/frontend/src/components/Navbar.tsx) has a row of icon buttons on the top right: User, Heart, Cart, and a mobile menu toggle. There is no share functionality.
+- TrendDrop has a full marketplace with products, cart, checkout, PWA, and share features.
+- Backend already has: `getAllOrders()`, `updateOrderStatus()`, `getOrdersByEmail()`, `placeOrder()`, `isCallerAdmin()`, `getNewsletterEmails()`, and product management APIs.
+- No admin UI exists yet.
+- Authorization component is installed (role-based, admin vs user vs guest).
 
 ## Requested Changes (Diff)
 
 ### Add
-- A Share icon button in the top-right icon group of the Navbar (before the mobile menu toggle)
-- A share panel/popover that opens when the button is clicked, containing:
-  - Copy Link (copies current URL to clipboard, shows confirmation)
-  - WhatsApp share
-  - Facebook share
-  - Twitter/X share
-  - Native share sheet (Web Share API, shown on mobile/supported devices)
+- Admin dashboard page (`/admin`) accessible via a hidden route (no link in main nav)
+- Password gate: simple hardcoded password check ("trenddrop2025") on the frontend before showing the dashboard — no Internet Identity needed
+- Admin stats bar: total orders, total revenue, avg order value, pending orders count
+- Orders table: customer name, email, phone, items summary, total, date, status badge, action dropdown to change status (Pending → Processing → Shipped → Fulfilled → Cancelled)
+- Filter bar: filter orders by status (All / Pending / Processing / Shipped / Fulfilled / Cancelled)
+- Top Products widget: derived from order data, ranked by units sold
+- Recent Activity feed: last 5 orders as a live mini-feed on the right side
+- Quick-copy buttons next to customer email and shipping address
+- Newsletter subscriber count card (calls `getNewsletterEmails()` for count)
+- Responsive layout — works on mobile and desktop
+- "Back to Store" button linking to `/`
 
 ### Modify
-- Navbar.tsx: Add Share button and share panel logic
+- App.tsx: add route handling to show AdminDashboard when path is `/admin`, otherwise show the normal store
 
 ### Remove
-- Nothing
+- Nothing removed
 
 ## Implementation Plan
-1. Add `Share2` icon from lucide-react to Navbar imports
-2. Add state for share panel open/closed and copy confirmation
-3. Insert Share button in the icon row (top right, before mobile menu toggle)
-4. Render a dropdown/popover share panel with:
-   - Copy Link option (uses navigator.clipboard, shows "Copied!" briefly)
-   - WhatsApp: `https://wa.me/?text=<encoded url>`
-   - Facebook: `https://www.facebook.com/sharer/sharer.php?u=<encoded url>`
-   - Twitter/X: `https://twitter.com/intent/tweet?url=<encoded url>&text=Check out TrendDrop!`
-   - Native share: `navigator.share` if available
-5. Panel closes on outside click or pressing Escape
+1. Create `src/frontend/src/components/AdminDashboard.tsx` — full admin UI with password gate, stats, orders table, filters, top products, activity feed
+2. Update `src/frontend/src/App.tsx` — check `window.location.pathname === '/admin'` and render `<AdminDashboard />` instead of the normal store
+3. Use existing backend APIs via `useActor` hook — `getAllOrders()`, `updateOrderStatus()`, `getNewsletterEmails()`
+4. No new backend changes needed — all APIs already exist
