@@ -54,6 +54,11 @@
   body {
     @apply bg-background text-foreground font-inter;
     font-feature-settings: "cv11", "ss01";
+    /* Safe area insets for notched phones */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 
@@ -184,34 +189,39 @@
   }
 }
 
+/* PWA install banner slide-up */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 .animate-aurora {
   animation: aurora 12s ease infinite;
 }
-
 .animate-aurora-orb-1 {
   animation: aurora-orb-1 10s ease-in-out infinite;
 }
-
 .animate-aurora-orb-2 {
   animation: aurora-orb-2 14s ease-in-out infinite;
 }
-
 .animate-aurora-orb-3 {
   animation: aurora-orb-3 8s ease-in-out infinite;
 }
-
 .animate-mesh {
   animation: mesh-drift 8s linear infinite;
 }
-
 .animate-shimmer {
   animation: shimmer 0.7s ease forwards;
 }
-
 .animate-badge-pop {
   animation: badge-pop 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
-
 .animate-pulse-ring {
   animation: pulse-ring 1s ease-out;
 }

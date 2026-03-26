@@ -5,6 +5,7 @@ import { CartDrawer } from "./components/CartDrawer";
 import { CheckoutModal } from "./components/CheckoutModal";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
+import { InstallPrompt } from "./components/InstallPrompt";
 import { Navbar } from "./components/Navbar";
 import { Newsletter } from "./components/Newsletter";
 import { ProductsSection } from "./components/ProductsSection";
@@ -135,6 +136,9 @@ export default function App() {
         cartItems={cartItems}
         onOrderSuccess={handleOrderSuccess}
       />
+
+      {/* PWA install prompt — appears after 3s if not already installed */}
+      <InstallPrompt />
 
       <Toaster position="top-right" richColors />
     </div>
