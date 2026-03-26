@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --primary: 0.65 0.19 40;
+    --primary-foreground: 1 0 0;
+    --background: 1 0 0;
+    --foreground: 0.15 0.01 220;
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.01 220;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.01 220;
+    --secondary: 0.97 0.005 220;
+    --secondary-foreground: 0.15 0.01 220;
+    --muted: 0.97 0.005 220;
+    --muted-foreground: 0.55 0.01 220;
+    --accent: 0.97 0.005 220;
+    --accent-foreground: 0.15 0.01 220;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 1 0 0;
+    --border: 0.92 0.005 220;
+    --input: 0.92 0.005 220;
+    --ring: 0.65 0.19 40;
+    --dark-nav: 0.25 0.01 220;
+    --dark-footer: 0.21 0.01 220;
+    --dark-hero: 0.12 0.01 220;
+    --brand: 0.65 0.19 40;
+    --brand-dark: 0.58 0.19 40;
+    --newsletter-bg: 0.97 0.005 220;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.205 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.205 0 0;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.708 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+/* ===== AURORA ANIMATION ===== */
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+    background-size: 200% 200%;
+  }
+  25% {
+    background-position: 50% 0%;
+    background-size: 220% 220%;
+  }
+  50% {
+    background-position: 100% 50%;
+    background-size: 200% 200%;
+  }
+  75% {
+    background-position: 50% 100%;
+    background-size: 240% 240%;
+  }
+  100% {
+    background-position: 0% 50%;
+    background-size: 200% 200%;
+  }
+}
+
+@keyframes aurora-orb-1 {
+  0%,
+  100% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 0.25;
+  }
+  33% {
+    transform: translate(3%, -5%) scale(1.1);
+    opacity: 0.35;
+  }
+  66% {
+    transform: translate(-3%, 3%) scale(0.95);
+    opacity: 0.2;
+  }
+}
+
+@keyframes aurora-orb-2 {
+  0%,
+  100% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 0.2;
+  }
+  40% {
+    transform: translate(-4%, 4%) scale(1.08);
+    opacity: 0.3;
+  }
+  70% {
+    transform: translate(2%, -2%) scale(0.92);
+    opacity: 0.18;
+  }
+}
+
+@keyframes aurora-orb-3 {
+  0%,
+  100% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-2%, -6%) scale(1.12);
+    opacity: 0.25;
+  }
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes mesh-drift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 oklch(0.65 0.19 40 / 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px oklch(0.65 0.19 40 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.65 0.19 40 / 0);
+  }
+}
+
+.animate-aurora {
+  animation: aurora 12s ease infinite;
+}
+
+.animate-aurora-orb-1 {
+  animation: aurora-orb-1 10s ease-in-out infinite;
+}
+
+.animate-aurora-orb-2 {
+  animation: aurora-orb-2 14s ease-in-out infinite;
+}
+
+.animate-aurora-orb-3 {
+  animation: aurora-orb-3 8s ease-in-out infinite;
+}
+
+.animate-mesh {
+  animation: mesh-drift 8s linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 0.7s ease forwards;
+}
+
+.animate-badge-pop {
+  animation: badge-pop 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1s ease-out;
+}
+
+@layer utilities {
+  .bg-dark-nav {
+    background-color: oklch(var(--dark-nav));
+  }
+  .bg-dark-footer {
+    background-color: oklch(var(--dark-footer));
+  }
+  .bg-dark-hero {
+    background-color: oklch(var(--dark-hero));
+  }
+  .bg-brand {
+    background-color: oklch(var(--brand));
+  }
+  .bg-brand-dark {
+    background-color: oklch(var(--brand-dark));
+  }
+  .text-brand {
+    color: oklch(var(--brand));
+  }
+  .text-dark-nav {
+    color: oklch(var(--dark-nav));
+  }
+  .border-brand {
+    border-color: oklch(var(--brand));
+  }
+  .bg-newsletter {
+    background-color: oklch(var(--newsletter-bg));
+  }
+  .hover\:bg-brand-dark:hover {
+    background-color: oklch(var(--brand-dark));
+  }
+  .ring-brand {
+    --tw-ring-color: oklch(var(--brand));
+  }
+}
